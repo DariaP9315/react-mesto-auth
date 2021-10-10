@@ -26,16 +26,9 @@ export const authorize = (email, password) => {
         },
         body: JSON.stringify({ email, password })
     })
-        .then(checkResponse)
-        .then((data) => {
-            if (data.token) {
-                localStorage.setItem('token', data.token);
-                return data;
-            }
-        });
 };
 
-export const checkToken = (token) => {
+export const checkToken = () => {
     return fetch(`${BASE_URL}/users/me`, {
         method: 'GET',
         headers: {
@@ -44,4 +37,12 @@ export const checkToken = (token) => {
         }
     })
         .then(checkResponse);
-}
+};
+
+export const signOut = () => {
+    return fetch(`${BASE_URL}/signout`, {
+        method: 'DELETE',
+        credentials: 'include',
+    })
+        .then(checkResponse);
+};

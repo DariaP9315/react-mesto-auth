@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Route, Switch, useHistory } from 'react-router-dom';
 import Header from './Header.js';
 import Main from './Main.js';
@@ -49,17 +49,27 @@ function App() {
         setCards(cards);
       })
       .catch(err => console.log(err));
-
-    if (localStorage.getItem('jwt')) {
-      auth.checkToken(localStorage.getItem('jwt'))
-        .then((res) => {
-          setLoggedIn(true);
-          setUserEmail(res.data.email);
-          history.push('/');
-        })
-        .catch((err) => console.log(err));
+  }, [loggedIn]);
+  
+  useEffect(() => {
+    if (loggedIn) {
+      history.push('/')
     }
-  }, []);
+  }, [loggedIn, history]);
+  
+  const handleCheckToken = React.useCallback(() => {
+    auth.checkToken()
+      .then((res) => {
+        setLoggedIn(true);
+        setUserEmail(res.email);
+        history.push('/');
+      })
+      .catch((err) => console.log(err))
+  }, [history]);
+
+  useEffect(() => {
+    handleCheckToken();
+  }, [handleCheckToken]);
 
   function handleEditAvatarClick() {
     setIsEditAvatarPopupOpen(true);
@@ -171,17 +181,19 @@ function App() {
       .then((res) => {
         setLoggedIn(true);
         setUserEmail(email);
-        localStorage.setItem('jwt', res.token);
         history.push('/');
       })
       .catch(err => console.log(err));
   }
 
   function handleLogOut() {
-    history.push('/signin');
-    setUserEmail('');
-    setLoggedIn(false);
-    localStorage.removeItem('jwt');
+    auth.signOut()
+      .then(() => {
+        history.push('/signin');
+        setUserEmail('');
+        setLoggedIn(false);
+      })
+      .catch(err => console.log(err));
   }
 
 

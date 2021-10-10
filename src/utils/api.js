@@ -78,7 +78,7 @@ class Api {
 }
 
 const api = new Api({
-  baseUrl: 'https://api.mesto-krasivoe.noomoredomains.club',
+  baseUrl: 'http://api.mesto-krasivoe.noomoredomains.club',
   headers: {
     'Content-Type': 'application/json',
   }

@@ -156,7 +156,7 @@ function App() {
         setIsInfoTooltipOpen(true);
         setStatusIcon(successIcon);
         setStatusMessage('Вы успешно зарегистрировались!');
-        history.push('/sign-in');
+        history.push('/signin');
       })
       .catch(err => {
         setIsInfoTooltipOpen(true);
@@ -178,7 +178,7 @@ function App() {
   }
 
   function handleLogOut() {
-    history.push('/sign-in');
+    history.push('/signin');
     setUserEmail('');
     setLoggedIn(false);
     localStorage.removeItem('jwt');
@@ -203,11 +203,11 @@ function App() {
           email={userEmail} />
         <Switch>
 
-          <Route path='/sign-up'>
+          <Route path='/signup'>
             <Register onRegister={handleRegister} />
           </Route>
 
-          <Route path='/sign-in'>
+          <Route path='/signin'>
             <Login onLogin={handleLogin} />
           </Route>
 

@@ -33,6 +33,7 @@ export const checkToken = () => {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': '*',
         }
     })
         .then(checkResponse);

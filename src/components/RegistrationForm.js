@@ -20,7 +20,7 @@ function RegistrationForm(props) {
                         <div className='registration__login'>
                             <p className='registration__login-caption'>Уже зарегистрированы?&nbsp;</p>
                             <Link
-                                to='/sign-in'
+                                to='/signin'
                                 className='registration__login-link'>Войти</Link>
                         </div>
                     }

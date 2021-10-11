@@ -12,7 +12,7 @@ class Api {
   }
 
   getUserData() {
-    return fetch('${this._baseUrl}/users/me', {
+    return fetch(`${this._baseUrl}/users/me`, {
       headers: this._headers
     })
       .then(this._checkRequestResult)
@@ -78,7 +78,7 @@ class Api {
 }
 
 const api = new Api({
-  baseUrl: 'https://api.mesto-krasivoe.nomoredomains.club',
+  baseUrl: 'http://api.mesto-krasivoe.nomoredomains.club',
   headers: {
     'Content-Type': 'application/json',
   }

@@ -12,7 +12,7 @@ class Api {
   }
 
   getUserData() {
-    return fetch(`${this._baseUrl}/users/me`, {
+    return fetch('http://api.mesto-krasivoe.nomoredomains.club/users/me', {
       headers: this._headers
     })
       .then(this._checkRequestResult)

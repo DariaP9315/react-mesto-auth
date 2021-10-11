@@ -1,4 +1,4 @@
-export const BASE_URL = 'http://api.mesto-krasivoe.nomoredomains.club';
+export const BASE_URL = 'http://mesto-krasivoe.nomoredomains.club';
 
 function checkResponse(res) {
     if (res.ok) {

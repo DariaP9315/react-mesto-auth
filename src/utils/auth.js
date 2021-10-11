@@ -36,7 +36,7 @@ export const checkToken = () => {
         credentials: 'include',
         headers: {
             'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin': '*',
+            'Accept': 'application/json',
         }
     })
         .then(checkResponse);

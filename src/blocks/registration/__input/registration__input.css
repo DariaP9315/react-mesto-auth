@@ -17,7 +17,7 @@
     margin-top: 0;
 }
 
-.registration__input:first-of-type {
+.registration__input:last-of-type {
     margin-bottom: 30px;
 }
 

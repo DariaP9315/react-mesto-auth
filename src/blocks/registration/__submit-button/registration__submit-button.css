@@ -18,7 +18,7 @@
     opacity: .85;
 }
 
-@media screen and (max-width: 576px) {
+@media screen and (max-width: 790px) {
     .registration__submit-button {
         margin-top: 173px;
         font-size: 16px;

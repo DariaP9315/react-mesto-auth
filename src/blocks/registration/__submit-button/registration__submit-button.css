@@ -1,25 +1,28 @@
 .registration__submit-button {
-    border: none;
-    border-radius: 2px;
-    max-width: 358px;
-    width: 100%;
-    min-height: 50px;
-    background-color: white;
-    align-self: center;
     margin-top: 216px;
+    width: 100%;
+    height: 50px;
     padding: 0;
-    font-family: 'Inter', Arial, sans-serif;
-    font-weight: 400;
+    border: none;
+    background: #FFFFFF;
+    border-radius: 2px;
+    font-style: normal;
+    font-weight: normal;
     font-size: 18px;
-    line-height: 1.22;
+    line-height: 22px;
     text-align: center;
-    color: #000;
-    transition: opacity 0.1s linear;
-    cursor: pointer;
+    color: #000000;
 }
 
-@media screen and (max-width: 470px) {
+.registration__submit-button:hover {
+    opacity: .85;
+}
+
+@media screen and (max-width: 576px) {
     .registration__submit-button {
+        height: 46px;
+        margin-top: 173px;
         font-size: 16px;
+        line-height: 19px;
     }
-};
+}

@@ -20,10 +20,6 @@
     margin-bottom: 30px;
 }
 
-.registration__input::placeholder {
-    color: #ccc;
-}
-
 .registration__input:focus {
     outline: 1px solid rgba(255, 255, 255, 0.8);
 }

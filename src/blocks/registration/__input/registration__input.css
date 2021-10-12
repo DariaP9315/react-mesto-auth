@@ -17,6 +17,10 @@
     margin-top: 0;
 }
 
+.registration__input:first-of-type {
+    margin-bottom: 30px;
+}
+
 .registration__input::placeholder {
     color: #ccc;
 }

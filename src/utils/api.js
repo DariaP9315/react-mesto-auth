@@ -4,78 +4,102 @@ class Api {
     this._headers = headers;
   }
 
-  _checkRequestResult(res) {
-    if (res.ok) {
-      return res.json()
+  _checkResponse(res) {
+        if (res.ok) {
+            return res.json();
+        }
+        return Promise.reject(`Ошибка: ${res.status}`);
     }
-    return Promise.reject(res.status)
-  }
 
-  getUserData() {
-    return fetch(`${this._baseUrl}/users/me`, {
-      headers: this._headers
-    })
-      .then(this._checkRequestResult)
-  }
+    getInitialCards() {
+        return fetch(`${this._baseUrl}/cards`, {
+            credentials: 'include',
+            headers: this._headers
+        })
+            .then(this._checkResponse);
+    }
 
-  getInitialCards() {
-    return fetch(`${this._baseUrl}/cards`, {
-      headers: this._headers
-    })
-      .then(this._checkRequestResult)
-  }
+    getUserInfo() {
+        return fetch(`${this._baseUrl}/users/me`, {
+            credentials: 'include',
+            headers: this._headers
+        })
+            .then(this._checkResponse);
+    }
 
-  changeLikeCardStatus(id, isLiked) {
-    return fetch(`${this._baseUrl}/cards/likes/${id}`, {
-      method: `${isLiked ? 'PUT' : 'DELETE'}`,
-      headers: this._headers,
+    setUserInfo({name, about}) {
+        return fetch(`${this._baseUrl}/users/me`, {
+            method: 'PATCH',
+            credentials: 'include',
+            headers: this._headers,
+            body: JSON.stringify({
+                name: `${name}`,
+                about: `${about}`
+            })
+        })
+            .then(this._checkResponse);
+    }
 
-    })
-      .then(this._checkRequestResult)
-  }
+    editAvatar({ avatar }) {
+        return fetch(`${this._baseUrl}/users/me/avatar`, {
+            method: 'PATCH',
+            credentials: 'include',
+            headers: this._headers,
+            body: JSON.stringify({
+                avatar: `${avatar}`
+            })
+        })
+            .then(this._checkResponse);
+    }
 
-  postCard({ name, link }) {
-    return fetch(`${this._baseUrl}/cards`, {
-      method: 'POST',
-      headers: this._headers,
-      body: JSON.stringify({
-        name: `${name}`,
-        link: `${link}`
-      })
-    })
-      .then(this._checkRequestResult)
-  }
+    addCard({ name, link }) {
+        return fetch(`${this._baseUrl}/cards`, {
+            method: 'POST',
+            credentials: 'include',
+            headers: this._headers,
+            body: JSON.stringify({
+                name: `${name}`,
+                link: `${link}`
+            })
+        })
+            .then(this._checkResponse);
+    }
 
-  deleteCard(id) {
-    return fetch(`${this._baseUrl}/cards/${id}`, {
-      method: `DELETE`,
-      headers: this._headers,
-    })
-      .then(this._checkRequestResult)
-  }
+    deleteCard(cardId) {
+        return fetch(`${this._baseUrl}/cards/${cardId}`, {
+            method: 'DELETE',
+            credentials: 'include',
+            headers: this._headers,
+        })
+            .then(this._checkResponse);
+    }
 
-  updateUserData({ name, about }) {
-    return fetch(`${this._baseUrl}/users/me`, {
-      method: 'PATCH',
-      headers: this._headers,
-      body: JSON.stringify({
-        name: `${name}`,
-        about: `${about}`
-      })
-    })
-      .then(this._checkRequestResult)
-  }
+    likeCard(cardId) {
+        return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
+            method: 'PUT',
+            credentials: 'include',
+            headers: this._headers,
+        })
+            .then(this._checkResponse);
+    }
 
-  updateAvatar({ avatar }) {
-    return fetch(`${this._baseUrl}/users/me/avatar`, {
-      method: 'PATCH',
-      headers: this._headers,
-      body: JSON.stringify({
-        avatar: `${avatar}`,
-      }),
-    }).then(this._checkRequestResult);
-  }
-}
+    unlikeCard(cardId) {
+        return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
+            method: 'DELETE',
+            credentials: 'include',
+            headers: this._headers,
+        })
+            .then(this._checkResponse);
+    }
+
+    changeLikeCardStatus(cardId, isLiked) {
+        if(isLiked) {
+            return this.likeCard(cardId);
+        } else {
+            return this.unlikeCard(cardId);
+        }
+    }
+}  
 
 const api = new Api({
   baseUrl: 'https://api.mesto-krasivoe.nomoredomains.club',

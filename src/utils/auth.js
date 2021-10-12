@@ -12,6 +12,7 @@ export const register = (email, password) => {
         method: 'POST',
         credentials: 'include',
         headers: {
+            'Accept': 'application/json',
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({ email, password })
@@ -24,6 +25,7 @@ export const authorize = (email, password) => {
         method: 'POST',
         credentials: 'include',
         headers: {
+            'Accept': 'application/json',
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({ email, password })
@@ -35,12 +37,12 @@ export const checkToken = () => {
         method: 'GET',
         credentials: 'include',
         headers: {
-            'Content-Type': 'application/json',
             'Accept': 'application/json',
+            'Content-Type': 'application/json',
         }
     })
         .then(checkResponse);
-};
+}
 
 export const signOut = () => {
     return fetch(`${BASE_URL}/signout`, {
@@ -48,4 +50,4 @@ export const signOut = () => {
         credentials: 'include',
     })
         .then(checkResponse);
-};
+}

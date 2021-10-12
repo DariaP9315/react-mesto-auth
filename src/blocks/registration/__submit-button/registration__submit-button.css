@@ -1,14 +1,11 @@
 .registration__submit-button {
     border: none;
     border-radius: 2px;
-    max-width: 358px;
     width: 100%;
-    min-height: 50px;
-    background-color: white;
-    align-self: center;
+    height: 50px;
+    background: white;
     margin-top: 216px;
     padding: 0;
-    font-family: 'Inter', Arial, sans-serif;
     font-weight: 400;
     font-size: 18px;
     line-height: 1.22;
@@ -18,8 +15,15 @@
     cursor: pointer;
 }
 
+.registration__submit-button:hover {
+    opacity: .85;
+}
+
 @media screen and (max-width: 470px) {
     .registration__submit-button {
+        height: 46px;
+        margin-top: 173px;
         font-size: 16px;
+        line-height: 19px;
     }
 };

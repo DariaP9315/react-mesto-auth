@@ -22,31 +22,31 @@ function Login(props) {
     })
   }
 
-  return (
-    <RegistrationForm
-      name='login'
-      title='Вход'
-      buttonText='Войти'
-      onSubmit={handleSubmit}>
-      <input
-        className='registration__input'
-        value={email}
-        type='email'
-        name='email'
-        placeholder='E-mail'
-        onChange={handleEmailChange}
-        required />
-      <input
-        className='registration__input'
-        minLength='6'
-        value={password}
-        type='password'
-        name='password'
-        placeholder='Пароль'
-        onChange={handlePasswordChange}
-        required />
-    </RegistrationForm>
-  )
+  import React from 'react';
+import { Link } from 'react-router-dom';
+
+function RegistrationForm(props) {
+    return (
+        <section className="registration">
+            <h2 className="registration__title">{props.title}</h2>
+            <form name={props.name} onSubmit={props.onSubmit} noValidate>
+                <fieldset className="registration__form">
+                    {props.children}
+                    <button className="registration__submit-button" type="submit" name='submit'>{props.buttonText}</button>
+
+                    {props.name === 'register' &&
+                        <div className="registration__login">
+                            <p className="registration__login-caption">Уже зарегистрированы?&nbsp;</p>
+                            <Link to="/signin" className="registration__login-link">Войти</Link>
+                        </div>
+                    }
+                </fieldset>
+            </form>
+        </section>
+    )
+}
+
+export default RegistrationForm;
 }
 
 

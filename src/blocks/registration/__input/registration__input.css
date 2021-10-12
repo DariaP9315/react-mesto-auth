@@ -1,21 +1,17 @@
 .registration__input {
-    border: 0;
-    box-sizing: border-box;
-    border-bottom: 1px solid #bcbcc4;
+    margin-top: 30px;
+    padding: 0 0 13px;
+    border: none;
+    outline: none;
+    border-bottom: 2px solid #CCCCCC;
     background-color: transparent;
-    margin: 30px auto 0;
+    font-style: normal;
+    font-weight: normal;
     font-size: 14px;
-    line-height: 1.22;
-    font-family: 'Inter', Arial, sans-serif;
-    color: white;
-    max-width: 358px;
-    width: 100%;
-    height: 27px;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden;
-    padding-bottom: 0;
+    line-height: 17px;
+    color: #CCCCCC;
 }
+
 
 .registration__input:first-of-type {
     margin-top: 0;
